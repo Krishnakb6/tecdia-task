@@ -1,0 +1,57 @@
+import cv2
+import os
+
+# --- Configuration ---
+VIDEO_FILE = 'jumbled_video.mp4'  # Name of the input jumbled video file
+OUTPUT_DIR = 'frames_output'     # Directory to save the extracted frames
+FRAME_COUNT = 300                # The video is 10 seconds * 30 FPS = 300 frames [cite: 3, 8]
+
+def extract_frames(video_path, output_folder):
+    """
+    Extracts frames from a video file and saves them to a directory.
+    """
+    # 1. Create the output directory if it doesn't exist
+    if not os.path.exists(output_folder):
+        os.makedirs(output_folder)
+        print(f"Created directory: {output_folder}")
+    
+    # 2. Open the video file
+    cap = cv2.VideoCapture(video_path)
+    if not cap.isOpened():
+        print(f"Error: Could not open video file {video_path}")
+        return
+
+    frame_index = 0
+    print("Starting frame extraction...")
+    
+    # 3. Loop through the video frames
+    while cap.isOpened() and frame_index < FRAME_COUNT:
+        # Read the next frame
+        ret, frame = cap.read()
+        
+        # 'ret' is a boolean flag, 'frame' is the image data (a NumPy array)
+        if ret:
+            # Create a filename with zero-padding (e.g., frame_001.png)
+            frame_filename = os.path.join(output_folder, f'frame_{frame_index:03d}.png')
+            
+            # Save the frame as a PNG file
+            cv2.imwrite(frame_filename, frame)
+            
+            if (frame_index + 1) % 30 == 0:
+                 print(f"Extracted {frame_index + 1} frames...")
+                 
+            frame_index += 1
+        else:
+            # Break the loop if the video has ended or an error occurred
+            break
+
+    # 4. Release the video capture object
+    cap.release()
+    print(f"\nExtraction complete. Total frames saved: {frame_index}")
+
+# --- Execution ---
+if __name__ == "__main__":
+    # NOTE: Ensure you have downloaded the jumbled video and placed it in the 
+    # same directory as this script, named 'jumbled_video.mp4'.
+    # The URL for the video is provided in the task proposal[cite: 60].
+    extract_frames(VIDEO_FILE, OUTPUT_DIR)
