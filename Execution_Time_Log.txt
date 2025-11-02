@@ -1,0 +1,12 @@
+2. Global Sort Execution (Merging Groups): 0.04 seconds
+3. Video Reconstruction (Writing Frames): 19.95 seconds
+4. Total Script Runtime: 20.05 seconds
+2. Global Sort Execution (Merging Groups): 0.07 seconds
+3. Video Reconstruction (Writing Frames): 21.30 seconds
+4. Total Script Runtime: 21.42 seconds
+2. Global Sort Execution (Merging Groups): 0.05 seconds
+3. Video Reconstruction (Writing Frames): 28.07 seconds
+4. Total Script Runtime: 28.15 seconds
+2. Global Sort Execution (Merging Groups): 0.04 seconds
+3. Video Reconstruction (Writing Frames): 41.71 seconds
+4. Total Script Runtime: 41.86 seconds
