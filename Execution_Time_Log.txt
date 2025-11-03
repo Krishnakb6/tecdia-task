@@ -1,0 +1,2 @@
+Total execution time for sort_anchor.py: 589.30 seconds
+Device used: cpu
